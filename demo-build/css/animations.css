@@ -1,0 +1,99 @@
+/* ===================================================================
+   Reveal-on-scroll animations
+   =================================================================== */
+
+/* Only hide if JS has marked itself as ready */
+.js-ready [data-anim],
+.js-ready .hero-title,
+.js-ready .hero-sub,
+.js-ready .hero-cta,
+.js-ready .hero-points,
+.js-ready .badge,
+.js-ready .section-head,
+.js-ready .price-card,
+.js-ready .how-card,
+.js-ready .cta-strip,
+.js-ready .progress-wrap,
+.js-ready .pricing-banner,
+.js-ready .form,
+.js-ready .hero-card {
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: opacity, transform;
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js-ready .hero-title {
+  transform: translateY(40px);
+}
+.js-ready .hero-card {
+  transform: translateY(30px);
+}
+
+/* When in view, show */
+.js-ready .in-view {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.form-nav button {
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Progress bar shimmer when changing */
+.progress-bar span.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.progress-bar span.shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  animation: shimmer 1.4s linear;
+}
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
+
+/* File drop drag-over */
+.file-drop.is-drag {
+  border-color: var(--blue-accent);
+  background: rgba(91, 141, 239, 0.12);
+  transform: scale(1.01);
+}
+
+/* Field focus glow */
+.field input:focus + .err,
+.field textarea:focus + .err { color: var(--text-dim); }
+
+/* Modal entrance */
+.modal {
+  animation: modal-pop 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: center;
+}
+@keyframes modal-pop {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* Toast slide-in is handled by JS class */
+
+/* Hover-lift utility */
+.lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.lift:hover {
+  transform: translateY(-3px);
+}
+
+/* Spinning loader extras */
+.success-icon svg {
+  animation: check-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes check-pop {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); }
+}
